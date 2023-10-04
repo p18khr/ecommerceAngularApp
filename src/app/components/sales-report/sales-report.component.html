@@ -1,0 +1,101 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Ecommerce</a>
+        <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="enter-products/{{idvendor}}">Add product</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vendor-products/{{idvendor}}">Vendor-products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vendor-register">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="vendor-login">Logout</a>
+              </li>
+          </ul>
+         <div style="color:#FFFFFF80">
+        Brand&nbsp;
+        <select #quantity (change)="onSelected(quantity.value)">
+          <option selected disabled>select brand</option>
+          <option value="{{c}}" *ngFor="let c of brand">{{c}}</option>
+        </select>&nbsp;&nbsp;
+      Category&nbsp;
+          <select #quantity1 (change)="onSelect(quantity1.value)">
+            <option selected disabled>select category</option>
+          <option value="{{c}}" *ngFor="let c of category">{{c}}</option>
+        </select>&nbsp;&nbsp;<br>
+      </div>
+      
+        </div>
+      </nav>
+<br><br>
+      <div class="center">Sales Report</div><br>
+      <form class="dates" [formGroup]="dates">
+        <table style="background-color: white; border: solid white; width: 50%;">
+          <tr style="background-color: white; border: 0px solid white; width: 50%;">
+            <td style="border: solid white;">
+              Starting Date : 
+            </td>
+            <td style="border:solid white;">
+              <input type="date" formControlName="startingDate" (change)="startDateCheck()"><div class="invalid" *ngIf="startingDate && startingDate.invalid && startingDate.touched ">Please select a starting date</div><div class="invalid" *ngIf="invalidStartDate == true">Please select a valid starting date</div>
+            </td>
+          </tr>
+          <tr style="background-color: white; border: 0px solid white; width:50%">
+            <td style="border:solid white;">
+              End Date: 
+            </td>
+            <td>
+              <input type="date" formControlName="endDate" (change)="endDateCheck()"><div class="invalid" *ngIf="endDate && endDate.invalid && endDate.touched">Please select an end date</div><div class="invalid" *ngIf="invalidEndDate == true">Please select a valid end date</div>
+            </td>
+          </tr>
+        </table>
+        <button type="button" class="btn btn-success" [disabled]="dates.invalid || invalidEndDate==true || invalidStartDate==true" (click)="search()">Filter</button>
+      </form>
+     <br><br> 
+     <div class="center">Total revenue:{{sum}}</div><br>
+     <div class="center" *ngIf="collection.length == 0">No sale record found</div>
+        <table class="container" *ngIf="collection.length > 0">
+            <tr>
+              <th>Sale id</th>
+              <th>Product id</th>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>Category</th>
+              <th>Image</th>
+              <th>Quantity</th>
+              <th>Original Price</th>
+              <th>Discount</th>
+              <th>Selling Price</th>
+              <th>Order Date</th>
+              <th>User id</th>
+            </tr>
+            <tr *ngFor="let data of collection">
+              <td>{{data.id}}</td>
+              <td>{{data.productId}}</td>
+              <td>{{data.name}}</td>
+              <td>{{data.brand}}</td>
+              <td>{{data.category}}</td>
+              <td><img src="{{data.image}}" height="100px" width="100px"></td>
+              <td>{{data.quantity}}</td>
+              <td>{{data.price}}</td>
+              <td>{{data.discount}}</td>
+              <td>{{data.totalPrice}}</td>
+              <td>{{data.orderDate}}</td>
+              <td>{{data.userId}}</td>
+            </tr>
+          </table>
+          
+    </body>
+    <app-footer-lg></app-footer-lg>
+</html>

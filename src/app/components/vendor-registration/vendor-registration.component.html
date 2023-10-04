@@ -1,0 +1,59 @@
+<html>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Ecommerce</a>
+    <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="vendor-login">Vendor-Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="user-register">User-Register</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="welcome-page">User-Login</a>
+          </li>
+      </ul>
+     
+    </div>
+  </nav>
+
+<div class="container">
+    <div class="login-page">
+        <div class="form">
+          <form class="register-form" [formGroup]="registerData" (ngSubmit)="register()">
+            <span class="center"><u>Vendor Registration Form</u></span><br><br>
+            <table>
+                <tr>
+                    <td>Name:</td>
+                    <td> <input type="text" placeholder="Name" formControlName="Name" maxlength =20 pattern="^[A-Za-z -]+$" required/><div class="invalid" *ngIf="Name && Name.invalid && Name.touched ">Please enter valid name</div></td>
+                </tr>
+                <tr>
+                    <td>Contact No.:</td>
+                    <td><input type="number" placeholder="contactNo" formControlName="contactNo"  required/><div class="invalid" *ngIf="contactNo && contactNo.invalid && contactNo.touched ">Please enter valid contactNo</div></td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td><input type="email" placeholder="email address" formControlName="email" maxlength=45 pattern="[^ @]*@[^ @]*[A-za-z0-9]*.[A-za-z0-9]" required/><div class="invalid" *ngIf="email && email.invalid && email.touched ">Please enter valid email</div></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td> <input type="password" placeholder="password" formControlName="password" maxlength =64 required/><div class="invalid" *ngIf="password && password.invalid && password.touched ">Please enter valid password</div></td>
+                </tr>
+            </table><br><br>
+            <div class="invalid1" *ngIf="registerData && registerData.invalid && registerData.touched ">Please fill remaining/incorrect entries</div>
+            <div class ="invalid1" *ngIf="invalid == true">Data already exists</div>
+            <div *ngIf="add == true">Registered successfully</div>
+            <button [disabled]="registerData.invalid">Register</button>
+            <p class="message">Already registered? <a [routerLink]= "['/vendor-login']">Sign In</a></p>
+          </form>
+        </div>
+      </div>
+</div>
+<app-footer></app-footer>
+</body>
+</html>

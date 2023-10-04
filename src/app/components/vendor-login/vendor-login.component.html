@@ -1,0 +1,56 @@
+<html>
+<body id="login">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Ecommerce</a>
+        <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" href="user-register">User-Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="welcome-page">User-Login</a>
+              </li>
+          </ul>
+         
+        </div>
+      </nav>
+
+    
+<div class="container">
+    <div class="login-page">
+        <div class="form">
+          <form class="login-form" [formGroup]="vendorData" (ngSubmit)="authenticate()">
+            <span class="center"><u>Vendor Login Form</u></span><br><br><br>
+            <table>
+                <tr>
+                    <td>
+                        Email:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="email" formControlName="email" pattern="[^ @]*@[^ @]*[A-za-z0-9]*.[A-za-z0-9]"  required/><div class="invalid" *ngIf="email && email.invalid && email.touched ">Please enter valid id</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Password:
+                    </td>
+                    <td>
+                        <input type="password" placeholder="password" formControlName="password" required /><div class="invalid" *ngIf="password && password.invalid && password.touched ">Please enter valid id</div>
+                    </td>
+                </tr>
+            </table><br><br>
+            <div class="invalid1" *ngIf="vendorData && vendorData.invalid && vendorData.touched ">Please fill remaining/incorrect entries</div>
+            <div class ="invalid1" *ngIf="invalid == true">Invalid credentials</div>
+            <button [disabled]="vendorData.invalid">login</button>
+            <p class="message">Not registered? <a [routerLink]= "['/vendor-register']">Create an account</a></p>
+          </form>
+        </div>
+      </div>
+</div>  
+<app-footer></app-footer>    
+</body>
+</html>

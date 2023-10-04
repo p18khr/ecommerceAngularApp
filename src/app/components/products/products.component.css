@@ -1,0 +1,120 @@
+
+.card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    height: 100%;
+    width: 100%;
+    opacity: 150%;
+  }
+  
+  /* On mouse-over, add a deeper shadow */
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    background-color: lightblue;
+    height: 100%;
+    width: 100%;
+    opacity: 150%;
+  }
+  
+  /* Add some padding inside the card container */
+  .container {
+    padding: 2px 16px;
+    height: 100%;
+    width: 100%;
+    
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding-top: 50px;
+  }
+
+  .brand{
+    padding-top: 80px;
+    text-align: center;
+  }
+
+ 
+  .grid-item {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding:20px;
+    font-size: 30px;
+    text-align: center;
+  }
+
+  p{
+    font-size: 15px;
+  }
+
+  
+
+  .navbar{
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+}
+
+body{
+  padding-bottom: 50px; 
+}
+
+ .added{
+  font-size: large;
+  color: green;
+  text-align: center;
+ }
+
+ 
+
+ .btn-custom{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65px;
+ }
+
+ .search{
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 5%;
+ }
+
+ .navbar-brand{
+  cursor: pointer;
+ }
+ 
+ 
+ .l1{
+  width: 320px;
+ }
+  
+ .danger{
+  color: red;
+  font-size: small;
+ }
+
+ .hurry{
+  color:red;
+  font-size: small;
+ }
+
+
+ .modal-button{
+  font-size: small;
+  border: 0.5px solid black;
+  width: 25% !important;
+}
+
+.empty{
+  padding-top: 10%;
+  padding-left: 50%;
+  font-size: large;
+  text-align: center;
+  font-weight: bold;
+}
+
+.f{
+  text-align: center;
+}

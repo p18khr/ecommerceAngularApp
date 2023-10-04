@@ -1,0 +1,79 @@
+
+<html>
+<head>
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Ecommerce</a>
+        <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="sales-report/{{id}}">Sales Report</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vendor-products/{{id}}">Vendor-products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vendor-register">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="vendor-login">Logout</a>
+              </li>
+          </ul>
+         
+        </div>
+      </nav>
+    
+   
+<div class="container">
+    <div class="login-page">
+        <div class="form">
+          <form class="register-form" [formGroup]="productData" (ngSubmit)="add()">
+            <span class="center"><u>Enter Product Details</u></span><br><br>
+            <table>
+                <tr>
+                    <td>Brand:</td>
+                    <td><input type="text" placeholder="Brand" formControlName="brand" maxlength =20 pattern="^[A-Za-z0-9 -]+$" required/><div class="invalid" *ngIf="brand && brand.invalid && brand.touched ">Please enter valid brand</div></td>
+                </tr>
+                <tr>
+                    <td>Category:</td>
+                    <td> <input type="text" placeholder="Category" formControlName="category" maxlength =20 pattern="^[A-Za-z -]+$" required/><div class="invalid" *ngIf="category && category.invalid && category.touched ">Please enter only alphabets</div></td>
+                </tr>
+                <tr>
+                    <td>Discount:</td>
+                    <td><input type="number" placeholder="Discount" formControlName="discount" max="99" min="0" required/><div class="invalid" *ngIf="discount && discount.invalid && discount.touched ">Please enter valid discount</div></td>
+                </tr>
+                <tr>
+                    <td>Name:</td>
+                    <td><input type="text" placeholder="Name" formControlName="name" maxlength=25 pattern="^[A-Za-z0-9 -]+$" required/><div class="invalid" *ngIf="name && name.invalid && name.touched ">Please enter valid name</div></td>
+                </tr>
+                <tr>
+                    <td>Price:</td>
+                    <td> <input type="number" placeholder="Price" formControlName="price" min="1" max="999999" required/><div class="invalid" *ngIf="price && price.invalid && price.touched ">Please enter valid price</div></td>
+                </tr>
+                <tr>
+                    <td>Stock:</td>
+                    <td> <input type="number" placeholder="Stock" formControlName="stock" required/><div class="invalid" *ngIf="stock && stock.invalid && stock.touched ">Please enter valid number</div></td>
+                </tr>
+               <tr>
+                <td>Image:</td>
+                <td><input type="text" placeholder="paste your image link here" formControlName="image" required><div class="invalid" *ngIf="image && image.invalid && image.touched ">Please enter link</div></td>
+               </tr>
+            </table><br><br>
+            <div class="invalid1" *ngIf="productData && productData.invalid && productData.touched ">Please fill remaining/incorrect entries</div>
+            <div class ="invalid1" *ngIf="invalid2 == true">Product Name already exists</div>
+            <div class="added" *ngIf="add1 == true"> Added successfully</div>
+            <button [disabled]="productData.invalid">Add</button><br><br>
+            <button class="btn btn-danger" type="reset">Reset</button>
+          </form>
+        </div>
+      </div>
+</div>
+<app-footer-products></app-footer-products>
+</body>
+</html>

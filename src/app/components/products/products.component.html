@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="products/{{id}}">Ecommerce</a>
+    <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="cart/{{id}}">Cart</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="your-orders/{{id}}">Your orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="welcome-page">Logout</a>
+          </li>
+      </ul>
+      <div style="color:#FFFFFF80">
+        Brand&nbsp;
+        <select #quantity (change)="onSelected(quantity.value)">
+          <option selected disabled>select brand</option>
+          <option value="{{c}}" *ngFor="let c of brand">{{c}}</option>
+        </select>&nbsp;&nbsp;
+      Category&nbsp;
+          <select #quantity1 (change)="onSelect(quantity1.value)">
+            <option selected disabled>select category</option>
+          <option value="{{c}}" *ngFor="let c of category">{{c}}</option>
+        </select>&nbsp;&nbsp;&nbsp;<br>
+      </div>
+      
+       <form class="form-inline my-2 my-lg-0" [formGroup]="searchData">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" maxlength="20" formControlName="search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="filter()">Search</button>
+      </form>
+    </div>
+  </nav>
+    
+  
+    
+  
+<div class="grid-container">
+  <div class="empty" *ngIf="collection.length == 0">0 products matched.</div>
+  <div class="grid-item" *ngFor="let data of collection">
+    <div class="card">
+        <div class="container">
+            <img src="{{data.image}}" height="220px" width="220px">
+          <h5>Name: <b>{{data.name}}</b></h5>
+          <h5>Brand: <b>{{data.brand}}</b></h5>
+          <h5>Category:<b>{{data.category}}</b></h5> 
+          <h5>Discount: <b>{{data.discount}}%</b></h5> 
+          <h5>Price: <b>&#8377;{{data.price}}</b></h5>  
+          <div class="danger" *ngIf="data.stock<=0">Not available(Out of stock)</div>
+          <div class="hurry" *ngIf="data.stock <= 10 && data.stock > 0">Only few left! Hurry Up!</div>
+           <button type="button" [disabled]="(data.stock == 0)" class="btn btn-primary" (click)="redirect(data.id)">Add to Cart</button>
+           <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <p>Product Added to Cart</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class = "modal-button" class="btn btn-primary" (click)="proceedToCart()">
+          Proceed to cart
+        </button>
+        <button type="button" class = "modal-button" class="btn btn-danger" 
+                (click)="closePopup()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+        </div>
+        
+      </div> 
+           
+  </div>
+  
+</div> 
+</body>
+</html>
+<app-footer-lg></app-footer-lg>
+
+
+

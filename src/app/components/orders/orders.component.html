@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="products/{{id}}">Ecommerce</a>
+    <button class="navbar-toggler btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"  aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngbCollapse]="isCollapsed">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="cart/{{id}}">Cart</a>
+        </li>
+          <li class="nav-item">
+            <a class="nav-link" href="welcome-page">Logout</a>
+          </li>
+      </ul>
+       
+    </div>
+  </nav>
+
+ 
+<div class="grid-container">
+  <div class="empty" *ngIf="collection.length == 0">No products to show.<a href="products/{{id}}"> Click here to buy.</a></div>
+  <div class="grid-item" *ngFor="let data of collection">
+    <div class="card">
+        <div class="container">
+            <img src="{{data.image}}" height="220px" width="220px">
+          <h5>Name: <b>{{data.name}}</b></h5>
+          <h5>Brand: <b>{{data.brand}}</b></h5>
+          <h5>Category:<b>{{data.category}}</b></h5> 
+          <h5>Price: <b>{{data.price}}</b></h5>
+          <h5>Discount: <b>{{data.discount}}%</b></h5> 
+          <h5>Payable Total Price: <b>&#8377;{{data.totalPrice}}</b></h5>  
+          <h5>Quantity: <b>{{data.quantity}}</b></h5>
+          <h5>Ordered on <b>{{data.orderDate}} at {{data.orderTime}}</b></h5>
+          
+        </div>
+        
+      </div> 
+           
+  </div>
+  
+</div> 
+</body>
+</html>
+<app-footer-lg></app-footer-lg>
+
+
+
